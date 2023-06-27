@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@angular/material/prebuilt-themes/pink-bluegrey.css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="main">
+      <mat-card class="my-card">
+        <h1>Todo List App</h1>
+        <div class="search">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="task" />
+          </mat-form-field>
+          <button mat-icon-button (click)="addTask(task)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <ul>
+          <li *ngFor="let task of tasks">
+            {{ task.name }}
+            <button mat-icon-button (click)="deleteTask(task.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </li>
+        </ul>
+        <p></p>
+      </mat-card>
+    </div>    
+    <div>
+      <!-- Todo page content here -->
+      <button (click)="signOut()">Sign Out</button>
+    </div>
+  </body>
+</html>

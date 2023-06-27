@@ -1,0 +1,45 @@
+body {
+    font-family: 'Roboto', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+  }
+  .card-container {
+    padding: 20px;
+    width: 400px;
+  }
+  h1 {
+    color: #ff4081;
+    text-align: center;
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .my-card {
+    background-color: white;
+    border: 20%;
+    padding: 20px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
