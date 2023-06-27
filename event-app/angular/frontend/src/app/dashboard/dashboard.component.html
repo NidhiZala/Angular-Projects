@@ -1,0 +1,105 @@
+<!-- <button (click)="signOut()">Sign Out</button> -->
+<h1 class="title">Event Platform</h1>
+<div class="container">
+    <div class="card">
+    <br>
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search events...">
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" (click)="searchEvents()">Search</button>
+  
+      <div class="create">
+        <h2>Create Event</h2>
+        <form (ngSubmit)="createEvent()">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="newEvent.name" name="eventName" placeholder="Event Name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="newEvent.host" name="eventHost" placeholder="Event Host">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="newEvent.date" name="eventDate" placeholder="Event Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">Create</button>
+        </form>
+      </div>
+  
+      <div>
+        <h2>List of Events</h2>
+        <table mat-table [dataSource]="events" class="mat-elevation-z8">
+          <!-- Table columns -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Event Name </th>
+            <td mat-cell *matCellDef="let event">
+              <ng-container *ngIf="editingEventId === event.id; else displayField">
+                <input matInput type="text" [(ngModel)]="event.name" name="eventName" placeholder="Event Name" />
+              </ng-container>
+              <ng-template #displayField>{{ event.name }}</ng-template>
+            </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="host">
+            <th mat-header-cell *matHeaderCellDef> Event Host </th>
+            <td mat-cell *matCellDef="let event">
+              <ng-container *ngIf="editingEventId === event.id; else displayField">
+                <input matInput type="text" [(ngModel)]="event.host" name="eventHost" placeholder="Event Host" />
+              </ng-container>
+              <ng-template #displayField>{{ event.host }}</ng-template>
+            </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Event Date </th>
+            <td mat-cell *matCellDef="let event">
+              <ng-container *ngIf="editingEventId === event.id; else displayField">
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  [(ngModel)]="event.date"
+                  name="eventDate"
+                  placeholder="Event Date"
+                />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </ng-container>
+              <ng-template #displayField>{{ event.date | date }}</ng-template>
+            </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let event">
+              <ng-container *ngIf="editingEventId === event.id; else displayButtons">
+                <button mat-raised-button color="primary" (click)="saveEvent(event)">Save</button>
+                <button mat-raised-button color="warn" (click)="cancelEdit(event)">Cancel</button>
+              </ng-container>
+              <!-- <ng-template #displayButtons>
+                <button mat-icon-button color="primary" (click)="editEvent(event)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteEvent(event)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </ng-template> -->
+              <ng-template #displayButtons>
+                <button mat-raised-button color="primary" (click)="editEvent(event)">Edit</button>
+                <button mat-raised-button color="warn" (click)="deleteEvent(event)">Delete</button>
+              </ng-template>
+            </td>
+          </ng-container>
+      
+          <!-- Table header row -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      
+          <!-- Table data rows -->
+          <tr mat-row *matRowDef="let event; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+        
+      
+    </div>
+  </div>
+  

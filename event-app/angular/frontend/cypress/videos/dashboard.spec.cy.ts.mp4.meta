@@ -1,0 +1,11 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=-1029
+END=3615
+title=End-to-End Tests should check if the edit button exists in the Actions column
+[CHAPTER]
+TIMEBASE=1/1000
+START=3996
+END=8271
+title=End-to-End Tests should check if the delete button exists in the Actions column
